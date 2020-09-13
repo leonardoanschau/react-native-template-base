@@ -1,17 +1,8 @@
 import axios from 'axios';
-import {getToken} from './Auth';
 
-function baseAxios(options) {
-  const Api = axios.create({
-    baseURL: process.env.REACT_APP_API_URL,
-  });
-
-  Api.interceptors.request.use(async config => {
-    const token = getToken();
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
+function baseAxios() {
+  return axios.create({
+    baseURL: 'https://jsonplaceholder.typicode.com/',
   });
 }
 

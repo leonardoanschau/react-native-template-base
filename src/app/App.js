@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import fontSize from '../constants/FontSize';
+import Api from '../middleware/Api';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,9 +20,7 @@ const styles = StyleSheet.create({
 
 const App = () => {
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos/1')
-      .then(response => response.json())
-      .then(json => console.log(json));
+    requestExample();
   }, []);
   return (
     <>
@@ -33,3 +32,13 @@ const App = () => {
 };
 
 export default App;
+
+function requestExample() {
+  Api.get('todos/1')
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}
